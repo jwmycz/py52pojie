@@ -1,0 +1,14 @@
+2026-01-08 11:40:48.882 | INFO     | __main__:check_in:71 - 抱歉，本期您已申请过此任务，请下期再来
+2026-01-08 11:40:49.276 | INFO     | tools.send_wx:send_wechat_notification:26 - 企业微信通知发送成功
+2026-01-08 12:14:15.617 | INFO     | __main__:check_in:71 - 抱歉，本期您已申请过此任务，请下期再来
+2026-01-08 12:14:15.940 | INFO     | tools.send_wx:send_wechat_notification:26 - 企业微信通知发送成功
+2026-01-08 12:16:10.570 | INFO     | __main__:check_in:71 - 抱歉，本期您已申请过此任务，请下期再来
+2026-01-08 12:16:10.899 | INFO     | tools.send_wx:send_wechat_notification:26 - 企业微信通知发送成功
+2026-01-08 12:23:13.418 | INFO     | __main__:check_in:72 - 抱歉，本期您已申请过此任务，请下期再来
+2026-01-08 12:23:13.758 | INFO     | tools.send_wx:send_wechat_notification:25 - 企业微信通知发送成功
+2026-01-08 12:37:50.919 | INFO     | __main__:check_in:72 - 抱歉，本期您已申请过此任务，请下期再来
+2026-01-08 12:37:51.274 | INFO     | tools.send_wx:send_wechat_notification:25 - 企业微信通知发送成功
+2026-01-08 12:38:13.027 | INFO     | __main__:check_in:72 - 抱歉，本期您已申请过此任务，请下期再来
+2026-01-08 12:38:13.380 | INFO     | tools.send_wx:send_wechat_notification:25 - 企业微信通知发送成功
+2026-01-08 12:39:21.068 | INFO     | __main__:check_in:72 - 抱歉，本期您已申请过此任务，请下期再来
+2026-01-08 12:39:21.421 | INFO     | tools.send_wx:send_wechat_notification:25 - 企业微信通知发送成功

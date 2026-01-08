@@ -1,0 +1,6 @@
+APScheduler==3.11.0
+httpx==0.28.1
+loguru==0.7.3
+lxml==6.0.2
+pyexecjs==1.5.1
+Requests==2.32.5
