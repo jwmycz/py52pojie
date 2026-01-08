@@ -85,6 +85,7 @@ def start_sch():
         minute=0,
         second=0
     )
+    scheduler.start()
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("请提供启动方式参数: start | sch")
