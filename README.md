@@ -45,6 +45,10 @@ python start.py sch
 ### 程序运行示例
 ![程序运行示例](img/c.png)
 
+### 签到完成示例
+![签到完成示例](img/w.png)
+
+
 ## ⚙️ 配置说明
 
 ### 1. 更新 Cookie
