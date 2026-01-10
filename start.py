@@ -4,7 +4,7 @@ import requests
 from apscheduler.schedulers.blocking import BlockingScheduler
 from tools.tools import *
 from tools.send_wx import send_wechat_notification
-
+from apscheduler.triggers.cron import CronTrigger
 session=requests.Session()
 job_defaults = {
     'coalesce': True,
@@ -16,7 +16,7 @@ proxy=env['proxy']
 ck_data=env['ck_data']
 wechat_url=env['wechat_url']
 cookies=read_cookies(ck_data)
-
+cron_expression=env['cron_expression']
 
 headers = {
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
@@ -76,14 +76,11 @@ def start():
     check_in()
 
 def start_sch():
-
+    logger.info('定时任务开始')
     scheduler.add_job(
         check_in,
-        trigger='cron',
-        name='吾爱破解论坛',
-        hour=8,
-        minute=0,
-        second=0
+        trigger=CronTrigger.from_crontab(cron_expression),
+        name='吾爱破解论坛'
     )
     scheduler.start()
 if __name__ == "__main__":
