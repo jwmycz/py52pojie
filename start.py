@@ -15,8 +15,9 @@ env=read_env()
 proxy=env['proxy']
 ck_data=env['ck_data']
 wechat_url=env['wechat_url']
-cookies=read_cookies(ck_data)
 cron_expression=env['cron_expression']
+wechat_url_open=env['wechat_url_open']
+cookies=read_cookies(ck_data)
 
 headers = {
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
@@ -70,7 +71,8 @@ def check_in():
         ctx=etree.HTML(response.text)
         data=ctx.xpath(pt)
         logger.info(data[0])
-        send_wechat_notification(wechat_url,data[0])
+        if wechat_url_open:
+            send_wechat_notification(wechat_url,data[0])
 
 def start():
     check_in()
