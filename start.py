@@ -63,7 +63,7 @@ def bypass_waf():
     waf_data=get_waf_data()
     if waf_data:
         resp = session.post('https://www.52pojie.cn/waf_zw_verify', data=waf_data)
-        logger.debug(f'防火墙响应：{resp.text[:300]}')
+        logger.debug(f'WAF响应：{resp.text[:300]}')
         if resp.text=='ok':
             return True
         else:
@@ -82,7 +82,7 @@ def check_in():
         except:
             send(f'解析签到响应失败：{response.text}')
     else:
-        send(f'防火墙突破失败')
+        send(f'WAF验证失败')
 
 def start():
     check_in()
