@@ -1,25 +1,12 @@
 import re
 from lxml import etree
 import requests
-from apscheduler.schedulers.blocking import BlockingScheduler
+from tools.sch_time import scheduler
 from tools.tools import *
-from tools.send import send_dingtalk_notification,send_wechat_notification
+from tools.env import *
+from tools.send import send
 from apscheduler.triggers.cron import CronTrigger
 session=requests.Session()
-job_defaults = {
-    'coalesce': True,
-    'misfire_grace_time': 1500,
-}
-scheduler = BlockingScheduler(timezone='Asia/Shanghai', job_defaults=job_defaults)
-env=read_env()
-proxy=env['proxy']
-ck_data=env['ck_data']
-wechat_url=env['wechat_url']
-cron_expression=env['cron_expression']
-wechat_url_open=env['wechat_url_open']
-dingding_url=env['dingding_url']
-dingding_url_open=env['dingding_url_open']
-cookies=read_cookies(ck_data)
 
 headers = {
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
@@ -38,11 +25,7 @@ headers = {
 }
 session.headers.update(headers)
 session.cookies.update(cookies)
-def send(content):
-    if wechat_url_open:
-        send_wechat_notification(wechat_url, content)
-    if dingding_url_open:
-        send_dingtalk_notification(dingding_url, content)
+
 def get_waf_data():
     params = {
         'mod': 'task',
@@ -80,7 +63,7 @@ def check_in():
             logger.info(data[0])
             send(data[0])
         except:
-            send(f'解析签到响应失败：{response.text}')
+            send(f'解析签到响应失败：{response.text[:400]}')
     else:
         send(f'WAF验证失败')
 
