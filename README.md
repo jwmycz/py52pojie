@@ -67,7 +67,7 @@ python start.py sch
 3. 编辑 `env` 目录下的配置文件，将 `wechat_url` 替换为你的机器人 URL
 
 ### 3. 配置钉钉机器人推送
-1. 申请钉钉微信机器人
+1. 申请钉钉机器人
 2. 获取 Webhook URL
 3. 编辑 `env` 目录下的配置文件，将 `dingding_url` 替换为你的机器人 URL
 
