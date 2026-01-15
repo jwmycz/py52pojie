@@ -3,8 +3,7 @@ from lxml import etree
 import requests
 from apscheduler.schedulers.blocking import BlockingScheduler
 from tools.tools import *
-from tools.send_wx import send_wechat_notification
-from tools.send_dd import send_dingtalk_notification
+from tools.send import send_dingtalk_notification,send_wechat_notification
 from apscheduler.triggers.cron import CronTrigger
 session=requests.Session()
 job_defaults = {
@@ -39,7 +38,11 @@ headers = {
 }
 session.headers.update(headers)
 session.cookies.update(cookies)
-
+def send(content):
+    if wechat_url_open:
+        send_wechat_notification(wechat_url, content)
+    if dingding_url_open:
+        send_dingtalk_notification(dingding_url, content)
 def get_waf_data():
     params = {
         'mod': 'task',
@@ -73,11 +76,13 @@ def check_in():
         pt="//div[@id='messagetext']/p/text()"
         ctx=etree.HTML(response.text)
         data=ctx.xpath(pt)
-        logger.info(data[0])
-        if wechat_url_open:
-            send_wechat_notification(wechat_url,data[0])
-        if dingding_url_open:
-            send_dingtalk_notification(dingding_url,data[0])
+        try:
+            logger.info(data[0])
+            send(data[0])
+        except:
+            send(f'解析签到响应失败：{response.text}')
+    else:
+        send(f'防火墙突破失败')
 
 def start():
     check_in()
