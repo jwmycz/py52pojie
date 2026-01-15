@@ -3,7 +3,7 @@ import re
 import sys
 import json
 import execjs
-from . import logger
+from tools import logger
 
 def resource_path(relative_path: str) -> str:
     if hasattr(sys, '_MEIPASS'):

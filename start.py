@@ -5,6 +5,7 @@ from tools.sch_time import scheduler
 from tools.tools import *
 from tools.env import *
 from tools.send import send
+from tools.proxy_use import use_pro
 from apscheduler.triggers.cron import CronTrigger
 session=requests.Session()
 
@@ -25,7 +26,15 @@ headers = {
 }
 session.headers.update(headers)
 session.cookies.update(cookies)
-
+proxy=use_pro()
+if proxy:
+    session.proxies.update(proxy)
+    try:
+        res=session.get('http://httpbin.org/ip')
+        useproxy=res.json().get('origin','')
+        logger.debug(f'出口IP为：{useproxy}')
+    except:
+        logger.warning(f'出口IP无法判断')
 def get_waf_data():
     params = {
         'mod': 'task',

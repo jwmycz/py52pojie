@@ -1,5 +1,5 @@
 import requests
-from . import logger,headers
+from tools import logger,headers
 
 def send_wechat_notification(url,content):
     payload = {
