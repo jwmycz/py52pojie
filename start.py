@@ -26,15 +26,7 @@ headers = {
 }
 session.headers.update(headers)
 session.cookies.update(cookies)
-proxy=use_pro()
-if proxy:
-    session.proxies.update(proxy)
-    try:
-        res=session.get('http://httpbin.org/ip')
-        useproxy=res.json().get('origin','')
-        logger.debug(f'出口IP为：{useproxy}')
-    except:
-        logger.warning(f'出口IP无法判断')
+
 def get_waf_data():
     params = {
         'mod': 'task',
@@ -61,6 +53,15 @@ def bypass_waf():
         else:
             return False
 def check_in():
+    proxy = use_pro()
+    if proxy:
+        session.proxies.update(proxy)
+        try:
+            res = session.get('http://httpbin.org/ip')
+            useproxy = res.json().get('origin', '')
+            logger.debug(f'出口IP为：{useproxy}')
+        except:
+            logger.warning(f'出口IP无法判断')
     if bypass_waf():
         session.headers.update({'Referer': 'https://www.52pojie.cn/home.php?mod=task&do=apply&id=2&referer=%2F'})
         response=session.get('https://www.52pojie.cn/home.php?mod=task&do=apply&id=2&referer=%2Fhome.php%3Fmod%3Dtask%26do%3Ddraw%26id%3D2%26referer%3Dhttps%253A%252F%252Fwww.52pojie.cn%252F.%252F%252F')
