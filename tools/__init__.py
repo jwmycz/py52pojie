@@ -5,7 +5,7 @@ logger.add(
     rotation="00:00",  # 每天午夜轮转
     retention="100 days",  # 保留30天
     # compression="gz",  # 压缩格式
-    level="INFO"
+    level="DEBUG"
 )
 
 headers = {
