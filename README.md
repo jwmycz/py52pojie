@@ -1,5 +1,8 @@
 # 吾爱破解签到脚本
 
+### 项目合并至
+https://github.com/jwmycz/PyApi
+
 > 基于 pyexecjs 的吾爱破解论坛自动签到脚本
 
 > 增加看雪论坛，MT论坛，精易论坛签到脚本
